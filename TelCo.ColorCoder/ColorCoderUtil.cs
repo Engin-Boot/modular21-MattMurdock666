@@ -7,8 +7,8 @@ namespace TelCo.ColorCoder
     {
         public static ColorPair GetColorFromPairNumber(int pairNumber)
         {
-            int minorSize = colorMapMinor.Length;
-            int majorSize = colorMapMajor.Length;
+            int minorSize = ColorCoder.colorMapMinor.Length;
+            int majorSize = ColorCoder.colorMapMajor.Length;
             if (pairNumber < 1 || pairNumber > minorSize * majorSize){
                 throw new ArgumentOutOfRangeException(
                     string.Format("Argument PairNumber:{0} is outside the allowed range", pairNumber));
@@ -18,23 +18,23 @@ namespace TelCo.ColorCoder
             int majorIndex = zeroBasedPairNumber / minorSize;
             int minorIndex = zeroBasedPairNumber % minorSize;
 
-            ColorPair pair = new ColorPair() { majorColor = colorMapMajor[majorIndex],
-                minorColor = colorMapMinor[minorIndex] };
+            ColorPair pair = new ColorPair() { majorColor = ColorCoder.colorMapMajor[majorIndex],
+                minorColor = ColorCoder.colorMapMinor[minorIndex] };
 
             return pair;
         }
 
         public static int GetPairNumberFromColor(ColorPair pair){
             int majorIndex = -1;
-            for (int i = 0; i < colorMapMajor.Length; i++){
-                if (colorMapMajor[i] == pair.majorColor){
+            for (int i = 0; i < ColorCoder.colorMapMajor.Length; i++){
+                if (ColorCoder.colorMapMajor[i] == pair.majorColor){
                     majorIndex = i;
                     break;
                 }
             }
             int minorIndex = -1;
-            for (int i = 0; i < colorMapMinor.Length; i++){
-                if (colorMapMinor[i] == pair.minorColor){
+            for (int i = 0; i < ColorCoder.colorMapMinor.Length; i++){
+                if (ColorCoder.colorMapMinor[i] == pair.minorColor){
                     minorIndex = i;
                     break;
                 }
@@ -44,7 +44,7 @@ namespace TelCo.ColorCoder
                     string.Format("Unknown Colors: {0}", pair.ToString()));
             }
 
-            return (majorIndex * colorMapMinor.Length) + (minorIndex + 1);
+            return (majorIndex * ColorCoder.colorMapMinor.Length) + (minorIndex + 1);
         }
     }
 }    
