@@ -42,3 +42,4 @@ namespace TelCo.ColorCoder
             Debug.Assert(pairNumber == 6);
         }
     }
+}   
