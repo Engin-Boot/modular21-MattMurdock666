@@ -5,19 +5,17 @@ namespace TelCo.ColorCoder
 {
     class GetPair
     {
-        public static int GetPairNumberFromColor(ColorPair pair){
-            int majorIndex = -1;
-            int minorIndex = -1;
-            for (int i = 0; i < ColorCoder.colorMapMajor.Length; i++){
-                if (ColorCoder.colorMapMajor[i] == pair.majorColor){
-                    majorIndex = i;
-                    break;
-                }
-                if (ColorCoder.colorMapMinor[i] == pair.minorColor){
-                    minorIndex = i;
-                    break;
+        private static int GetIndex(ColorPair[] arr, Color c){
+            for(int i = 0; i < arr.Length; i++){
+                if(arr[i] == c){
+                    return i;
                 }
             }
+            return -1;
+        }
+        public static int GetPairNumberFromColor(ColorPair pair){
+            int majorIndex = GetIndex(ColorCoder.colorMapMajor, pair.majorColor);
+            int minorIndex = GetIndex(ColorCoder.colorMapMinor, pair.minorColor);
            
             if (majorIndex == -1 || minorIndex == -1){
                 throw new ArgumentException(
