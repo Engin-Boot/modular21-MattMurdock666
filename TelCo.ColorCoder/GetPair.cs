@@ -5,7 +5,7 @@ namespace TelCo.ColorCoder
 {
     class GetPair
     {
-        private static int GetIndex(ColorPair[] arr, Color c){
+        private static int GetIndex(Color[] arr, Color c){
             for(int i = 0; i < arr.Length; i++){
                 if(arr[i] == c){
                     return i;
