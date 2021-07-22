@@ -13,33 +13,38 @@ namespace TelCo.ColorCoder
         /// <param name="args"></param> 
         private static void Main(string[] args)
         {
-            int pairNumber = 4;
-            ColorPair testPair1 = GetColor.GetColorFromPairNumber(pairNumber);
-            Console.WriteLine("[In]Pair Number: {0},[Out] Colors: {1}\n", pairNumber, testPair1);
-            Debug.Assert(testPair1.majorColor == Color.White);
-            Debug.Assert(testPair1.minorColor == Color.Brown);
+            TestAllPairs();
 
-            pairNumber = 5;
-            testPair1 = GetColor.GetColorFromPairNumber(pairNumber);
-            Console.WriteLine("[In]Pair Number: {0},[Out] Colors: {1}\n", pairNumber, testPair1);
-            Debug.Assert(testPair1.majorColor == Color.White);
-            Debug.Assert(testPair1.minorColor == Color.SlateGray);
+            ReferenceManual.PrintMapping(new ConsoleLogger());
+            
+        }
 
-            pairNumber = 23;
-            testPair1 = GetColor.GetColorFromPairNumber(pairNumber);
-            Console.WriteLine("[In]Pair Number: {0},[Out] Colors: {1}\n", pairNumber, testPair1);
-            Debug.Assert(testPair1.majorColor == Color.Violet);
-            Debug.Assert(testPair1.minorColor == Color.Green);
+        public static void TestAllPairs()
+        {
+            int actualPairNumber = 1;
 
-            ColorPair testPair2 = new ColorPair() { majorColor = Color.Yellow, minorColor = Color.Green };
-            pairNumber = GetPair.GetPairNumberFromColor(testPair2);
-            Console.WriteLine("[In]Colors: {0}, [Out] PairNumber: {1}\n", testPair2, pairNumber);
-            Debug.Assert(pairNumber == 18);
+            for(int i = 0; i < ColorCoder.colorMapMajor.Length; i++)
+            {
+                for(int j = 0; j < ColorCoder.colorMapMinor.Length; j++)
+                {
+                    var colorPair = GetColor.GetColorFromPairNumber(actualPairNumber);
+                    Debug.Assert(colorPair.majorColor == ColorCoder.colorMapMajor[i]);
+                    Debug.Assert(colorPair.minorColor == ColorCoder.colorMapMinor[i]);
 
-            testPair2 = new ColorPair() { majorColor = Color.Red, minorColor = Color.Blue };
-            pairNumber = GetPair.GetPairNumberFromColor(testPair2);
-            Console.WriteLine("[In]Colors: {0}, [Out] PairNumber: {1}", testPair2, pairNumber);
-            Debug.Assert(pairNumber == 6);
+                    colorPair = new ColorPair
+                    {
+                        majorColor = ColorCoder.colorMapMajor[i],
+                        minorColor = ColorCoder.colorMapMinor[i]
+                    };
+
+                    int expectedPairNumber = GetPair.GetPairNumberFromColor(colorPair);
+
+                    Debug.Assert(actualPairNumber == expectedPairNumber);
+
+                    actualPairNumber++;
+
+                }
+            }
         }
     }
 }   
