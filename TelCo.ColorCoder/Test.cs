@@ -29,12 +29,12 @@ namespace TelCo.ColorCoder
                 {
                     var colorPair = GetColor.GetColorFromPairNumber(actualPairNumber);
                     Debug.Assert(colorPair.majorColor == ColorCoder.colorMapMajor[i]);
-                    Debug.Assert(colorPair.minorColor == ColorCoder.colorMapMinor[i]);
+                    Debug.Assert(colorPair.minorColor == ColorCoder.colorMapMinor[j]);
 
                     colorPair = new ColorPair
                     {
                         majorColor = ColorCoder.colorMapMajor[i],
-                        minorColor = ColorCoder.colorMapMinor[i]
+                        minorColor = ColorCoder.colorMapMinor[j]
                     };
 
                     int expectedPairNumber = GetPair.GetPairNumberFromColor(colorPair);

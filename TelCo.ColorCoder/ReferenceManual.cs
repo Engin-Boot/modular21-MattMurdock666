@@ -17,7 +17,7 @@ namespace TelCo.ColorCoder
             {
                 for(int j = 0; j < minorMapLength; j++)
                 {
-                    logger.Log("Major Color : " + ColorCoder.colorMapMajor[i] + " Minor Color : " + ColorCoder.colorMapMinor[i] + " Pair Number : " + pairNumber);
+                    logger.Log("Major Color : " + ColorCoder.colorMapMajor[i] + " Minor Color : " + ColorCoder.colorMapMinor[j] + " Pair Number : " + pairNumber);
                     pairNumber++;
                 }
             }
